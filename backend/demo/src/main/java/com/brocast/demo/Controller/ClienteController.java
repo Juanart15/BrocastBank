@@ -18,7 +18,6 @@ import java.util.List;
 public class ClienteController {
 
     private ClienteJPA jpa;
-    List<ClienteDTO> clientes = new ArrayList<>();
 
     @PostMapping(path = "/cliente")
     public ResponseEntity<String> guardarCliente(@RequestBody ClienteDTO clienteDTO) {
@@ -27,11 +26,12 @@ public class ClienteController {
             clienteORM.setNombre(clienteDTO.nombre());
             clienteORM.setCedula(clienteDTO.cedula());
             clienteORM.setTelefono(clienteDTO.telefono());
+            clienteORM.setClave(clienteDTO.clave());
 
             jpa.save(clienteORM);
             return new ResponseEntity<>("Cliente guardado", HttpStatus.CREATED);
         } catch (Exception e) {
-            e.printStackTrace();  // Registrar el error en la consola o logs
+            e.printStackTrace();
             return new ResponseEntity<>("Error al guardar cliente: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }

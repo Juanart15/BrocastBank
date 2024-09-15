@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.type.descriptor.jdbc.VarcharJdbcType;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -27,6 +28,9 @@ public class ClienteORM {
 
     @Column
     private Long telefono;
+
+    @Column
+    private String clave;
 
 
 }
