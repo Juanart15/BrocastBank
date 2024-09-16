@@ -10,7 +10,7 @@ function Login() {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (username === 'admin' && password === '1234') {
-      navigate('/dashboard');
+      navigate('/MainPage');
     } else {
       alert('Usuario o contraseña incorrectos');
     }

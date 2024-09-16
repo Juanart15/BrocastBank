@@ -2,9 +2,10 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Login from './Login';
 import Register from './Register';
-import Dashboard from './Dashboard';
 import Deposit from './Deposit';
 import Accountslist from './Accountslist';
+import MainPage from './MainPage';
+import CreateAccount from './CreateAccount';
 
 function App() {
   return (
@@ -12,9 +13,11 @@ function App() {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/MainPage" element={<MainPage />} />
         <Route path="/deposit" element={<Deposit />} />
-        <Route path="/accounts" element={<Accountslist />} />
+        <Route path="/CreateAccount" element={<CreateAccount />}
+         />
+         <Route path="/accounts" element={<Accountslist />} />
       </Routes>
     </Router>
   );

@@ -32,7 +32,7 @@ function Login({ onLogin }) {
         <div className="circle small shade5"></div>
       </div>
       <div className="login-box">
-        <h2>Login</h2>
+        <h2>Iniciar sesión</h2>
         <form onSubmit={handleSubmit}>
           <div className="input-container">
             <input 
@@ -54,13 +54,13 @@ function Login({ onLogin }) {
           </div>
           <div className="options">
             <label>
-              <input type="checkbox" /> Remember me
+              <input type="checkbox" /> Recordarme
             </label>
-            <a href="#" className="forgot-password">Forgot password?</a>
+            <a href="#" className="forgot-password">Olvidó su contraseña?</a>
           </div>
-          <button type="submit" className="login-button">Login</button>
+          <button type="submit" className="login-button">Continuar</button>
         </form>
-        <p>Don't have an account? <a href="#">Register</a></p>
+        <p>No tienes cuenta? <a href="#">Registrarme</a></p>
       </div>
     </div>
     </div>
