@@ -24,7 +24,7 @@ function MainPage({ clientName }) {
         <h2>{clientName}</h2>
         <ul>
           <li onClick={() => navigate('/CreateAccount')}>Crear Cuenta ➡️</li>
-          <li onClick={() => navigate('/view-accounts')}>Ver Cuenta ➡️</li>
+          <li onClick={() => navigate('/ViewAccounts')}>Ver Cuenta ➡️</li>
           <li onClick={() => navigate('/transaction')}>Transacción ➡️</li>
           <li onClick={() => navigate('/products')}>Nuestros Productos ➡️</li>
           <li onClick={() => navigate('/')}>Cerrar Sesión</li>

@@ -6,6 +6,8 @@ import Deposit from './Deposit';
 import Accountslist from './Accountslist';
 import MainPage from './MainPage';
 import CreateAccount from './CreateAccount';
+import ViewAccounts from './ViewAccounts';
+import Transaction from './Transaction';
 
 function App() {
   return (
@@ -17,6 +19,9 @@ function App() {
         <Route path="/deposit" element={<Deposit />} />
         <Route path="/CreateAccount" element={<CreateAccount />}
          />
+
+        <Route path="/view-accounts" element={<ViewAccounts />} />
+        <Route path="/transaction" element={<Transaction />} />
          <Route path="/accounts" element={<Accountslist />} />
       </Routes>
     </Router>

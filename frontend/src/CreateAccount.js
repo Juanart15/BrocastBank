@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import './Banco.css';
+import './Register.css';
 
 function CreateAccount() {
   const [clientID, setClientID] = useState('');
@@ -32,7 +32,7 @@ function CreateAccount() {
         type="int"
         placeholder="Cedula"
         value={clientName}
-        onChange={(e) => setClientName(e.target.value)}
+        onChange={(e) => setClientCedula(e.target.value)}
       />
       <button onClick={handleCreateAccount}>Crear Cuenta</button>
     </div>
