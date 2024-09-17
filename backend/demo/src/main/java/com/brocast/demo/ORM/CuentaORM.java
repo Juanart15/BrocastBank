@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
-@Table(name = "cuenta")
+@Table(name = "cuentas")
 @Entity
 @Data
 @AllArgsConstructor
@@ -16,27 +16,28 @@ public class CuentaORM {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idCuenta;
+    private Long cuentaId;
+
+    @Column(unique = true, nullable = false)
+    private Long cuentaNumero;
 
     @Column
-    private Long numeroCuenta;
-
-    @ManyToOne
-    @JoinColumn(name = "cedulaCliente", referencedColumnName = "cedula")
-    private ClienteORM cliente;
+    private Long clienteCedula;
 
     @Column
-    private Long telefonoCliente;
+    private String clienteNombre;
 
     @Column
-    private Double saldo;
+    private Long clienteTelefono;
+
+    @Column(nullable = true)
+    private Double cuentaSaldo;
 
     @Column
-    private LocalDate fechaCreacion;
+    private LocalDate cuentaFechaCreacion;
 
     @Column
-    private String clave;
-
-
+    private String cuentaClave;
 }
+
 

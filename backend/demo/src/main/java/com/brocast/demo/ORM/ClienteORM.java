@@ -4,10 +4,6 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.type.descriptor.jdbc.VarcharJdbcType;
-
-import java.math.BigDecimal;
-import java.math.BigInteger;
 
 @Table(name = "cliente")
 @Entity
@@ -23,8 +19,9 @@ public class ClienteORM {
     @Column
     private String nombre;
 
-    @Column
+    @Column(name = "cedula", unique = true, nullable = false)
     private Long cedula;
+
 
     @Column
     private Long telefono;
