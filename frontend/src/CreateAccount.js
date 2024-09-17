@@ -1,40 +1,71 @@
 import React, { useState } from 'react';
-
-import './Register.css';
+import './CreateAccount.css';
+import logoBB from './logoBB.png';
 
 function CreateAccount() {
-  const [clientID, setClientID] = useState('');
+  const [clientClave, setClave] = useState('');
   const [clientName, setClientName] = useState('');
-  const [clientCedula, setClientCedula]=useState('');
+  const [clientCedula, setClientCedula] = useState('');
+  const [clientSaldo, setSaldo] = useState('');
 
   const handleCreateAccount = () => {
-
-
-    alert('Cuenta creada para ' + clientName);
+    // Aquí podrías agregar la lógica para crear la cuenta en una base de datos o API.
+    alert('Cuenta creada exitosamente para ' + clientName);
   };
 
   return (
-    <div>
-      <h2>Crear Cuenta de Ahorros</h2>
-      <input
-        type="num"
-        placeholder="ID del Cliente"
-        value={clientID}
-        onChange={(e) => setClientID(e.target.value)}
-      />
-      <input
-        type="text"
-        placeholder="Nombre del Cliente"
-        value={clientName}
-        onChange={(e) => setClientName(e.target.value)}
-      />
-       <input
-        type="int"
-        placeholder="Cedula"
-        value={clientName}
-        onChange={(e) => setClientCedula(e.target.value)}
-      />
-      <button onClick={handleCreateAccount}>Crear Cuenta</button>
+    <div className="register-container">
+      <div className="register-box">
+      <div className="stars">
+        {[...Array(50)].map((_, i) => (
+          <div key={i} className="star"></div>
+        ))}
+         {[...Array(50)].map((_, i) => (
+          <div key={i} className="star"></div>
+        ))}
+      </div>
+        <h2>Crear Cuenta Bancaria</h2>
+        <div className="input-container">
+          <input
+            type="text"
+            className="register-input"
+            placeholder="Nombre del Cliente"
+            value={clientName}
+            onChange={(e) => setClientName(e.target.value)}
+          />
+        </div>
+        <div className="input-container">
+          <input
+            type="text"
+            className="register-input"
+            placeholder="Clave del Cliente"
+            value={clientClave}
+            onChange={(e) => setClave(e.target.value)}
+          />
+        </div>
+        
+        <div className="input-container">
+          <input
+            type="text"
+            className="register-input"
+            placeholder="Cédula"
+            value={clientCedula}
+            onChange={(e) => setClientCedula(e.target.value)}
+          />
+        </div>
+        <div className="input-container">
+          <input
+            type="number"
+            className="register-input"
+            placeholder="Saldo Inicial"
+            value={clientSaldo}
+            onChange={(e) => setSaldo(e.target.value)}
+          />
+        </div>
+        <button className="register-button" onClick={handleCreateAccount}>
+          Crear Cuenta
+        </button>
+      </div>
     </div>
   );
 }

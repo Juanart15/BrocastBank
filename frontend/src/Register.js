@@ -19,16 +19,21 @@ function Register() {
 
   return (
     <div className="bropage">
-      <div className="stars">
-        {[...Array(50)].map((_, i) => (
-          <div key={i} className="star"></div>
-        ))}
-         {[...Array(50)].map((_, i) => (
-          <div key={i} className="star"></div>
-        ))}
+      {/* Contenedor del logo en la esquina superior derecha */}
+      <div className="logo-container">
+        <img src={logoBB} alt="Brocast Bank Logo" />
       </div>
+
       <div className="left-container">
         <div className="register-box">
+          <div className="stars">
+            {[...Array(50)].map((_, i) => (
+              <div key={i} className="star"></div>
+            ))}
+            {[...Array(50)].map((_, i) => (
+              <div key={i} className="star"></div>
+            ))}
+          </div>
           <h2>Registrarme</h2>
           <form onSubmit={handleSubmit}>
             <div className="input-container">
@@ -67,8 +72,8 @@ function Register() {
           </form>
         </div>
       </div>
+      
       <div className="right-container">
-        <img src={logoBB} alt="Brocast Bank Logo" />
       </div>
     </div>
   );

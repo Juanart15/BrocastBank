@@ -1,0 +1,115 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background: radial-gradient(ellipse at bottom, #0d1d31 0%, #0c0d13 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+.bropage {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+}
+
+.left-container,
+.right-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    padding: 20px;
+}
+
+
+h2 {
+    color: #fff;
+}
+
+.transaction-options {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.transaction-type-button {
+    padding: 10px 20px;
+    color: white;
+    background-color: #00f;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.transaction-type-button.active {
+    background-color: #00ccff;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.transaction-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #00f;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.transaction-button:hover {
+    background-color: #1b2f58;
+}
+
+/* Fondo de estrellas */
+.stars {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    box-shadow: 0 0 10px white;
+    animation: fall linear infinite;
+}
+
+@keyframes fall {
+    0% {
+      transform: translateY(-100px) translateX(0);
+      opacity: 5;
+    }
+    100% {
+      transform: translateY(100vh) translateX(calc(100vw - 50vw));
+      opacity: 6;
+    }
+}
+
+.imagen_bro{
+    max-width: 50%;
+    max-height: 50%;
+}

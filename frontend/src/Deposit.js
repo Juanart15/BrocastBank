@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import logoBB from './logoBB.png';
 
 function Deposit() {
   const [amount, setAmount] = useState('');
@@ -22,6 +23,7 @@ function Deposit() {
         />
         <button type="submit">Hacer Deposito</button>
       </form>
+      <img src={logoBB} alt="Brocast Bank Logo" />
     </div>
   );
 }
