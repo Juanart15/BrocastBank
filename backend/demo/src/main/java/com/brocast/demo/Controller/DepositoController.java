@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @AllArgsConstructor
-public class DepositoControlller {
-    public DepositoService depositoService;
+public class DepositoController {
+    private final DepositoService depositoService;
 
     @PostMapping(path = "/deposito")
     @CrossOrigin

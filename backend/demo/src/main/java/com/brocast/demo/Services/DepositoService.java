@@ -4,9 +4,9 @@ import com.brocast.demo.JPA.CuentaJPA;
 import com.brocast.demo.JPA.DepositoJPA;
 import com.brocast.demo.ORM.CuentaORM;
 import com.brocast.demo.ORM.DepositoORM;
-import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import jakarta.transaction.Transactional;
 
 @Service
 @AllArgsConstructor
@@ -14,8 +14,10 @@ public class DepositoService {
     private final CuentaJPA cuentaJPA;
     private final DepositoJPA depositoJPA;
 
+    @Transactional
     public boolean guardarDepositos(Long numeroCuentaDeposito, Double saldoDeposito, String claveCuentaDeposito) {
         CuentaORM cuentaORM = cuentaJPA.findByCuentaNumero(numeroCuentaDeposito);
+
         if (cuentaORM == null) {
             throw new RuntimeException("Cuenta no encontrada");
         }
@@ -23,13 +25,19 @@ public class DepositoService {
         if (!cuentaORM.getCuentaClave().equals(claveCuentaDeposito)) {
             throw new RuntimeException("Clave incorrecta para la cuenta");
         }
+
+        // Crear un nuevo registro de depósito
         DepositoORM depositoORM = new DepositoORM();
         depositoORM.setNumeroCuentaDeposito(cuentaORM.getCuentaNumero());
         depositoORM.setSaldoDeposito(saldoDeposito);
         depositoORM.setClaveCuentaDeposito(claveCuentaDeposito);
 
-        depositoJPA.save(depositoORM);
+        depositoJPA.save(depositoORM);  
+
+        // Actualizar el saldo de la cuenta
+        cuentaORM.setCuentaSaldo(cuentaORM.getCuentaSaldo() + saldoDeposito);
+        cuentaJPA.save(cuentaORM); 
+
         return true;
     }
-
 }
