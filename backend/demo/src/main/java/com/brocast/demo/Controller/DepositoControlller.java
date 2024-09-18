@@ -1,8 +1,6 @@
 package com.brocast.demo.Controller;
 
-import com.brocast.demo.DTO.CuentaDTO;
 import com.brocast.demo.DTO.DepositoDTO;
-import com.brocast.demo.Services.CuentaService;
 import com.brocast.demo.Services.DepositoService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
