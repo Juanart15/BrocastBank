@@ -1,5 +1,4 @@
 package com.brocast.demo.Controller;
-
 import com.brocast.demo.DTO.ClienteDTO;
 import com.brocast.demo.ORM.ClienteORM;
 import com.brocast.demo.Services.ClienteService;
@@ -15,6 +14,7 @@ public class ClienteController {
     public ClienteService clienteService;
 
     @PostMapping(path = "/cliente")
+    @CrossOrigin
     public ResponseEntity<String> guardarCliente(@RequestBody ClienteDTO clienteDTO) {
         try{
             clienteService.guardarCliente(clienteDTO.nombre(), clienteDTO.cedula(), clienteDTO.telefono(), clienteDTO.clave());

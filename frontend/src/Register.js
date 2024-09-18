@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios'; 
 import './Register.css';
 import logoBB from './logoBB.png';
 
@@ -12,14 +13,26 @@ function Register() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // creacion de cuenta
-    alert('Cuenta creada exitosamente!');
-    navigate('/');
+    const nuevoCliente = {
+      nombre: username,
+      cedula: cedula,
+      telefono: celular,
+      clave: password,
+    };
+    axios.post('http://localhost:8080/cliente', nuevoCliente)
+      .then(response => {
+        console.log('Cliente guardado:', response.data);
+        alert('Cuenta creada exitosamente!');
+        navigate('/');  
+      })
+      .catch(error => {
+        console.error('Hubo un error al crear la cuenta:', error);
+        alert('Hubo un error al crear la cuenta.');
+      });
   };
 
   return (
     <div className="bropage">
-      {/* Contenedor del logo en la esquina superior derecha */}
       <div className="logo-container">
         <img src={logoBB} alt="Brocast Bank Logo" />
       </div>
@@ -68,13 +81,12 @@ function Register() {
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
-            <button type="submit" className="login-button">Registrate</button>
+            <button type="submit" className="login-button" onClick={handleSubmit}>Registrate</button>
           </form>
         </div>
       </div>
-      
-      <div className="right-container">
-      </div>
+
+      <div className="right-container"></div>
     </div>
   );
 }
