@@ -15,8 +15,6 @@
     min-height: 100vh;
     overflow: hidden;
 }
-  
-  /* Main container */
   .main-container {
     display: flex;
     height: 100vh;
@@ -27,7 +25,7 @@
   }
   
   .left-container {
-    background: rgba(0, 0, 0, 0.8); /* Fondo negro con transparencia */
+    background: rgba(0, 0, 0, 0.8); 
     border-radius: 10px;
     padding: 40px;
     text-align: center;
@@ -40,11 +38,11 @@
     font-size: 1.8rem;
     font-weight: 700;
     margin-bottom: 20px;
-    color: #004aad; /* Mantén el color original de las letras */
+    color: #2161b6; 
 }
 
 .left-container li {
-    background-color: #004aad; /* El color de fondo de los ítems */
+    background-color: #2f70c5;
     color: #ffffff;
     margin: 10px 0;
     padding: 15px;

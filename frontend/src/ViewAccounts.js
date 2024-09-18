@@ -1,39 +1,68 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
+import './ViewAccounts.css';
 
-function ViewAccounts() {
+function ViewAccount() {
+  const [cedula, setCedula] = useState('');
+  const [clave, setClave] = useState('');
+  const [account, setAccount] = useState(null);
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
 
-  const [accounts, setAccounts] = useState([
-    { accountNumber: '123456', clientId: '12345678', clientName: 'John Doe', balance: 5000, creationDate: '2023-09-01' },
-    { accountNumber: '789101', clientId: '87654321', clientName: 'Jane Doe', balance: 3000, creationDate: '2023-09-10' },
-  ]);
+  const handleCedulaChange = (event) => setCedula(event.target.value);
+  const handleClaveChange = (event) => setClave(event.target.value);
+
+  const handleViewAccount = () => {
+    setLoading(true);
+    setError('');
+    setAccount(null);
+
+    axios.get(`http://localhost:8080/cuent?clienteCedula=${cedula}&cuentaClave=${clave}`)
+      .then((response) => {
+        setAccount(response.data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        setError('Cédula o clave incorrecta');
+        setLoading(false);
+      });
+  };
 
   return (
-    <div className="view-accounts-container">
-      <h2>Lista de Cuentas</h2>
-      <table className="accounts-table">
-        <thead>
-          <tr>
-            <th>Número de Cuenta</th>
-            <th>Doc Cliente</th>
-            <th>Nombre Cliente</th>
-            <th>Saldo</th>
-            <th>Fecha de Creación</th>
-          </tr>
-        </thead>
-        <tbody>
-          {accounts.map((account) => (
-            <tr key={account.accountNumber}>
-              <td>{account.accountNumber}</td>
-              <td>{account.clientId}</td>
-              <td>{account.clientName}</td>
-              <td>${account.balance}</td>
-              <td>{account.creationDate}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <div className="view-account-container">
+      <h2>Consultar Cuenta</h2>
+      <div className="input-container">
+        <input
+          type="text"
+          placeholder="Ingrese la cédula"
+          value={cedula}
+          onChange={handleCedulaChange}
+        />
+        <input
+          type="password"
+          placeholder="Ingrese la clave"
+          value={clave}
+          onChange={handleClaveChange}
+        />
+        <button className="Consultarcuenta" onClick={handleViewAccount}>Consultar Cuenta</button>
+      </div>
+
+      {loading ? (
+        <p>Cargando datos...</p>
+      ) : account ? (
+        <div className="account-info">
+          <h3>Detalles de la Cuenta</h3>
+          <p><strong>Número de Cuenta:</strong> {account.cuentaNumero}</p>
+          <p><strong>Nombre:</strong> {account.clienteNombre}</p>
+          <p><strong>Teléfono:</strong> {account.clienteTelefono}</p>
+          <p><strong>Saldo:</strong> ${account.cuentaSaldo}</p>
+          <p><strong>Fecha de Creación:</strong> {account.cuentaFechaCreacion}</p>
+        </div>
+      ) : error && (
+        <p className="error">{error}</p>
+      )}
     </div>
   );
 }
 
-export default ViewAccounts;
+export default ViewAccount;

@@ -18,7 +18,7 @@ function App() {
         <Route path="/MainPage" element={<MainPage />} />
         <Route path="/deposit" element={<Deposit />} />
         <Route path="/CreateAccount" element={<CreateAccount />} />
-        <Route path="/view-accounts" element={<ViewAccounts />} />
+        <Route path="/ViewAccounts" element={<ViewAccounts />} />
         <Route path="/transaction" element={<Transaction />} />
          <Route path="/accounts" element={<Accountslist />} />
       </Routes>

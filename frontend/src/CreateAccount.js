@@ -17,7 +17,7 @@ function CreateAccount() {
     setClientCedula(cedula);
 
     if (cedula.length === 10) { // Asegúrate de que la cédula tenga 10 dígitos
-      axios.get(`http://localhost:8080/cliente?cedula=${cedula}`)
+      axios.get(`http://localhost:8080/client?cedula=${cedula}`)
         .then(response => {
           const cliente = response.data;
           setClientName(cliente.nombre); // Auto-completa el nombre
@@ -35,7 +35,7 @@ function CreateAccount() {
   const handleCreateAccount = (event) => {
     event.preventDefault();
     const nuevaCuenta = {
-      clienteCedula: clientCedula,  // Cambia a "clienteCedula" para coincidir con el backend
+      clienteCedula: clientCedula, 
       cuentaSaldo: clientSaldo,   
       cuentaClave: clientClave     
     };
@@ -46,8 +46,8 @@ function CreateAccount() {
         navigate('/');  
       })
       .catch(error => {
-        console.error('Hubo un error al crear tu cuenta', error);
-        alert('Hubo un error al crear cuenta');
+        console.error('Esta cuenta ya existe', error);
+        alert('Esta cuenta ya existe');
       });
   };
 

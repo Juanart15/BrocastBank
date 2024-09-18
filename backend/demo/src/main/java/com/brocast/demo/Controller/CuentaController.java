@@ -32,6 +32,15 @@ public class CuentaController {
     public CuentaORM mostrarCuenta(@RequestParam Long clienteCedula) {
         return cuentaService.consultarCuenta(clienteCedula);
     }
+    @GetMapping(path = "/cuent")
+    public ResponseEntity<CuentaORM> consultarCuenta(@RequestParam Long clienteCedula, @RequestParam String cuentaClave) {
+        try {
+            CuentaORM cuenta = cuentaService.consultarCuenta(clienteCedula, cuentaClave);
+            return ResponseEntity.ok(cuenta);
+        } catch (Exception e) {
+            return ResponseEntity.status(400).body(null);
+        }
+    }
 }
 
 

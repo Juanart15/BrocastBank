@@ -46,6 +46,13 @@ public class CuentaService {
         CuentaORM list = cuentaJPA.findByClienteCedula(clienteCedula);
         return list;
     }
+    public CuentaORM consultarCuenta(Long clienteCedula, String cuentaClave) {
+        CuentaORM cuenta = cuentaJPA.findByClienteCedulaAndCuentaClave(clienteCedula, cuentaClave);
+        if (cuenta == null) {
+            throw new RuntimeException("Cédula o clave incorrecta.");
+        }
+        return cuenta;
+}
 }
 
 

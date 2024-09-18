@@ -9,5 +9,6 @@ import org.springframework.stereotype.Repository;
 public interface CuentaJPA extends JpaRepository<CuentaORM, Long> {
     CuentaORM findByClienteCedula(Long clienteCedula);
     CuentaORM findByCuentaNumero(Long numeroCuenta);
+    CuentaORM findByClienteCedulaAndCuentaClave(Long clienteCedula, String cuentaClave);
 }
 
