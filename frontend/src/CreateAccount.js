@@ -7,6 +7,7 @@ function CreateAccount() {
   const [clientName, setClientName] = useState('');
   const [clientCedula, setClientCedula] = useState('');
   const [clientSaldo, setSaldo] = useState('');
+  const [clientCelular, setClientCelular] = useState('');
 
   const handleCreateAccount = () => {
     // Aquí podrías agregar la lógica para crear la cuenta en una base de datos o API.
@@ -23,6 +24,15 @@ function CreateAccount() {
          {[...Array(50)].map((_, i) => (
           <div key={i} className="star"></div>
         ))}
+        <div className="input-container">
+          <input
+            type="text"
+            className="register-input"
+            placeholder="Cédula cliente"
+            value={clientCedula}
+            onChange={(e) => setClientCedula(e.target.value)}
+          />
+        </div>
       </div>
         <h2>Crear Cuenta Bancaria</h2>
         <div className="input-container">
@@ -36,23 +46,23 @@ function CreateAccount() {
         </div>
         <div className="input-container">
           <input
-            type="text"
+            type="number"
             className="register-input"
-            placeholder="Clave del Cliente"
+            placeholder="Clave de la cuenta"
             value={clientClave}
             onChange={(e) => setClave(e.target.value)}
           />
         </div>
-        
         <div className="input-container">
           <input
-            type="text"
+            type="number"
             className="register-input"
-            placeholder="Cédula"
-            value={clientCedula}
-            onChange={(e) => setClientCedula(e.target.value)}
+            placeholder="Numero de celular"
+            value={clientCelular}
+            onChange={(e) => setClientCelular(e.target.value)}
           />
         </div>
+        
         <div className="input-container">
           <input
             type="number"
