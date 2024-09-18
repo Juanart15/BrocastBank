@@ -46,7 +46,7 @@ function Register() {
             </div>
             <div className="input-container">
               <input
-                type="text"
+                type="number"
                 placeholder="Cedula"
                 value={cedula}
                 onChange={(e) => setCedula(e.target.value)}
@@ -54,7 +54,7 @@ function Register() {
             </div>
             <div className="input-container">
               <input
-                type="text"
+                type="number"
                 placeholder="Celular"
                 value={celular}
                 onChange={(e) => setCelular(e.target.value)}

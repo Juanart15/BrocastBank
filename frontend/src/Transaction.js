@@ -45,7 +45,7 @@ function Transaction() {
             <div className="input-group">
               <label>Número de Cuenta</label>
               <input 
-                type="text" 
+                type="number" 
                 value={accountNumber} 
                 onChange={(e) => setAccountNumber(e.target.value)} 
                 placeholder="Ingrese número de cuenta" 
