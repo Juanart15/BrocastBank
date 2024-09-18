@@ -6,6 +6,7 @@ function Transaction() {
   const [transactionType, setTransactionType] = useState('deposit'); 
   const [accountNumber, setAccountNumber] = useState('');
   const [amount, setAmount] = useState('');
+  const [clave, setClave] = useState('');
 
   const handleTransaction = (event) => {
     event.preventDefault();
@@ -59,6 +60,15 @@ function Transaction() {
                 value={amount} 
                 onChange={(e) => setAmount(e.target.value)} 
                 placeholder="Ingrese el monto" 
+              />
+            </div>
+            <div className="input-group">
+              <label>Clave de la cuenta</label>
+              <input 
+                type="number" 
+                value={clave} 
+                onChange={(e) => setClave(e.target.value)} 
+                placeholder="Ingresa la Clave" 
               />
             </div>
             
