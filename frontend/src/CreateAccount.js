@@ -24,17 +24,19 @@ function CreateAccount() {
          {[...Array(50)].map((_, i) => (
           <div key={i} className="star"></div>
         ))}
+        
+      </div>
+      
+        <h2>Crear Cuenta Bancaria</h2>
         <div className="input-container">
           <input
-            type="text"
+            type="number"
             className="register-input"
             placeholder="Cédula cliente"
             value={clientCedula}
             onChange={(e) => setClientCedula(e.target.value)}
           />
         </div>
-      </div>
-        <h2>Crear Cuenta Bancaria</h2>
         <div className="input-container">
           <input
             type="text"
