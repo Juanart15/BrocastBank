@@ -67,53 +67,37 @@ function CreateAccount() {
       </div>
       
         <h2>Crear Cuenta Bancaria</h2>
-        <div className="input-container">
+        <div className="input-containere">
           <input
             type="number"
-            className="register-input"
+            className="register-inputt"
             placeholder="Cédula cliente"
             value={clientCedula}
             onChange={(e) => setClientCedula(e.target.value)}
           />
         </div>
-        <div className="input-container">
+       
+        <div className="input-containere">
           <input
             type="text"
-            className="register-input"
-            placeholder="Nombre del Cliente"
-            value={clientName}
-            onChange={(e) => setClientName(e.target.value)}
-          />
-        </div>
-        <div className="input-container">
-          <input
-            type="text"
-            className="register-input"
+            className="register-inputt"
             placeholder="Clave de la cuenta"
             value={clientClave}
             onChange={(e) => setClave(e.target.value)}
           />
         </div>
-        <div className="input-container">
-          <input
-            type="number"
-            className="register-input"
-            placeholder="Numero de celular"
-            value={clientCelular}
-            onChange={(e) => setClientCelular(e.target.value)}
-          />
-        </div>
+      
         
-        <div className="input-container">
+        <div className="input-containere">
           <input
             type="number"
-            className="register-input"
+            className="register-inputt"
             placeholder="Saldo Inicial"
             value={clientSaldo}
             onChange={(e) => setSaldo(e.target.value)}
           />
         </div>
-        <button className="register-button" onClick={handleCreateAccount}>
+        <button className="register-buttono" onClick={handleCreateAccount}>
           Crear Cuenta
         </button>
       </div>

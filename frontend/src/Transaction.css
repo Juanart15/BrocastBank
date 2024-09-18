@@ -78,7 +78,7 @@ input {
     background-color: #1b2f58;
 }
 
-/* Fondo de estrellas */
+
 .stars {
     position: fixed;
     top: 0;
@@ -112,4 +112,11 @@ input {
 .imagen_bro{
     max-width: 50%;
     max-height: 50%;
+}
+label {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #ced1d4; 
+
 }

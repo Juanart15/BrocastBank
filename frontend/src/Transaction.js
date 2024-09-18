@@ -25,7 +25,7 @@ function Transaction() {
       .then(response => {
         console.log('Deposito exitoso', response.data);
         alert(`Deposito de $${amount} realizado exitosamente a la cuenta ${accountNumber}`);
-        navigate('/');
+        navigate('/MainPage');
       })
       .catch(error => {
         console.error('Error al realizar el depósito', error);
