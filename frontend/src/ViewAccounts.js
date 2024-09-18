@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
 function ViewAccounts() {
-    //ejemplo despues se debe carar la bd aqui
 
   const [accounts, setAccounts] = useState([
     { accountNumber: '123456', clientId: '12345678', clientName: 'John Doe', balance: 5000, creationDate: '2023-09-01' },

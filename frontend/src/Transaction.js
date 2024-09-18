@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Transaction.css';
 import logoBB from './logoBB.png';
+import axios from 'axios'; 
 
 function Transaction() {
   const [transactionType, setTransactionType] = useState('deposit'); 
@@ -8,12 +10,27 @@ function Transaction() {
   const [amount, setAmount] = useState('');
   const [clave, setClave] = useState('');
 
-  const handleTransaction = (event) => {
-    event.preventDefault();
-    // Lógica para realizar la transacción
-    alert(`Realizando un ${transactionType} de $${amount} a la cuenta ${accountNumber}`);
-  };
+  const navigate = useNavigate();
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const nuevoCliente = {
+      numeroCuentaDeposito: accountNumber,
+      saldoDeposito: amount,
+      claveCuentaDeposito: clave,
+    };
+    axios.post('http://localhost:8080/deposito', nuevoCliente)
+      .then(response => {
+        console.log('Deposito exitoso', response.data);
+        alert(`Realizando un ${transactionType} de $${amount} a la cuenta ${accountNumber}`);
+        navigate('/');  
+      })
+      .catch(error => {
+        console.error('Hubo un error al crear tu registro', error);
+        alert('Hubo un error al crear el registro');
+      });
+  };
+  
   return (
     <div className="bropage">
       <div className="left-container">
@@ -42,7 +59,7 @@ function Transaction() {
             </button>
           </div>
           
-          <form onSubmit={handleTransaction}>
+          <form onSubmit={handleSubmit}>
             <div className="input-group">
               <label>Número de Cuenta</label>
               <input 
@@ -65,14 +82,14 @@ function Transaction() {
             <div className="input-group">
               <label>Clave de la cuenta</label>
               <input 
-                type="number" 
+                type="text" 
                 value={clave} 
                 onChange={(e) => setClave(e.target.value)} 
                 placeholder="Ingresa la Clave" 
               />
             </div>
             
-            <button type="submit" className="transaction-button">
+            <button type="submit" className="transaction-button" onClick={handleSubmit}>
               {transactionType === 'deposit' ? 'Realizar Depósito' : 'Realizar Transferencia'}
             </button>
           </form>

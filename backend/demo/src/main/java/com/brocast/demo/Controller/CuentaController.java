@@ -17,6 +17,7 @@ public class CuentaController {
     public CuentaService cuentaService;
 
     @PostMapping(path = "/cuenta")
+    @CrossOrigin
     public ResponseEntity<String> guardarCuenta(@RequestBody CuentaDTO cuentaDTO) {
         try {
             cuentaService.guardarCuenta(cuentaDTO.clienteCedula(), cuentaDTO.cuentaSaldo(), cuentaDTO.cuentaClave());

@@ -22,12 +22,12 @@ function Register() {
     axios.post('http://localhost:8080/cliente', nuevoCliente)
       .then(response => {
         console.log('Cliente guardado:', response.data);
-        alert('Cuenta creada exitosamente!');
+        alert('Te registraste exitosamente!');
         navigate('/');  
       })
       .catch(error => {
-        console.error('Hubo un error al crear la cuenta:', error);
-        alert('Hubo un error al crear la cuenta.');
+        console.error('Hubo un error al crear tu registro', error);
+        alert('Hubo un error al crear el registro');
       });
   };
 

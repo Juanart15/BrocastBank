@@ -5,6 +5,7 @@ import com.brocast.demo.Services.DepositoService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,6 +16,7 @@ public class DepositoControlller {
     public DepositoService depositoService;
 
     @PostMapping(path = "/deposito")
+    @CrossOrigin
     public ResponseEntity<String> guardarDeposito(@RequestBody DepositoDTO depositoDTO) {
         try {
             depositoService.guardarDepositos(depositoDTO.numeroCuentaDeposito(), depositoDTO.saldoDeposito(), depositoDTO.claveCuentaDeposito());
@@ -23,5 +25,4 @@ public class DepositoControlller {
             e.printStackTrace();
             return new ResponseEntity<>("Error al guardar el deposito: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
-    }
-}
+    }}

@@ -1,19 +1,34 @@
 import './login.css';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios'; 
 
 function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
-
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (username === 'admin' && password === '1234') {
-      navigate('/MainPage');
-    } else {
-      alert('Usuario o contraseña incorrectos');
-    }
+
+    const cliente = {
+      nombre: username,
+      clave: password,
+    };
+
+   
+    axios.post('http://localhost:8080/login', cliente)
+      .then(response => {
+        if (response.status === 200) {
+          navigate('/MainPage');
+        }
+      })
+      .catch(error => {
+        if (error.response && error.response.status === 401) {
+          alert('Usuario o contraseña incorrectos');
+        } else {
+          alert('Hubo un error en el servidor');
+        }
+      });
   };
 
   return (

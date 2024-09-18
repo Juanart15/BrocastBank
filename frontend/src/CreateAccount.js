@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './CreateAccount.css';
+import axios from 'axios'; 
 import logoBB from './logoBB.png';
 
 function CreateAccount() {
@@ -8,11 +10,48 @@ function CreateAccount() {
   const [clientCedula, setClientCedula] = useState('');
   const [clientSaldo, setSaldo] = useState('');
   const [clientCelular, setClientCelular] = useState('');
+  const navigate = useNavigate();
 
-  const handleCreateAccount = () => {
-    // Aquí podrías agregar la lógica para crear la cuenta en una base de datos o API.
-    alert('Cuenta creada exitosamente para ' + clientName);
+  const handleCedulaChange = (e) => {
+    const cedula = e.target.value;
+    setClientCedula(cedula);
+
+    if (cedula.length === 10) { // Asegúrate de que la cédula tenga 10 dígitos
+      axios.get(`http://localhost:8080/cliente?cedula=${cedula}`)
+        .then(response => {
+          const cliente = response.data;
+          setClientName(cliente.nombre); // Auto-completa el nombre
+          setClientCelular(cliente.telefono); // Auto-completa el teléfono
+        })
+        .catch(error => {
+          console.error('Error al buscar cliente:', error);
+          alert('Cliente no encontrado');
+          setClientName('');
+          setClientCelular('');
+        });
+    }
   };
+
+  const handleCreateAccount = (event) => {
+    event.preventDefault();
+    const nuevaCuenta = {
+      clienteCedula: clientCedula,  // Cambia a "clienteCedula" para coincidir con el backend
+      cuentaSaldo: clientSaldo,   
+      cuentaClave: clientClave     
+    };
+
+    axios.post('http://localhost:8080/cuenta', nuevaCuenta)
+      .then(response => {
+        alert('Tu cuenta ha sido creada exitosamente!');
+        navigate('/');  
+      })
+      .catch(error => {
+        console.error('Hubo un error al crear tu cuenta', error);
+        alert('Hubo un error al crear cuenta');
+      });
+  };
+
+  
 
   return (
     <div className="register-container">
@@ -48,7 +87,7 @@ function CreateAccount() {
         </div>
         <div className="input-container">
           <input
-            type="number"
+            type="text"
             className="register-input"
             placeholder="Clave de la cuenta"
             value={clientClave}

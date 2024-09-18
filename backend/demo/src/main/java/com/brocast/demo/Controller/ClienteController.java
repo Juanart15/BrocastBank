@@ -1,4 +1,5 @@
 package com.brocast.demo.Controller;
+
 import com.brocast.demo.DTO.ClienteDTO;
 import com.brocast.demo.ORM.ClienteORM;
 import com.brocast.demo.Services.ClienteService;
@@ -11,12 +12,12 @@ import org.springframework.web.bind.annotation.*;
 @AllArgsConstructor
 public class ClienteController {
 
-    public ClienteService clienteService;
+    private final ClienteService clienteService;
 
     @PostMapping(path = "/cliente")
     @CrossOrigin
     public ResponseEntity<String> guardarCliente(@RequestBody ClienteDTO clienteDTO) {
-        try{
+        try {
             clienteService.guardarCliente(clienteDTO.nombre(), clienteDTO.cedula(), clienteDTO.telefono(), clienteDTO.clave());
             return new ResponseEntity<>("Cliente guardado", HttpStatus.CREATED);
         } catch (Exception e) {
@@ -29,7 +30,25 @@ public class ClienteController {
     public ClienteORM mostrarCliente(@RequestParam Long cedula) {
         return clienteService.consultarCliente(cedula);
     }
-
+    @GetMapping(path = "/cliente")
+@CrossOrigin
+public ResponseEntity<ClienteORM> obtenerClientePorCedula(@RequestParam Long cedula) {
+    ClienteORM cliente = clienteService.consultarCliente(cedula);
+    if (cliente != null) {
+        return new ResponseEntity<>(cliente, HttpStatus.OK);
+    } else {
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
 }
 
-
+    @PostMapping(path = "/login")
+    @CrossOrigin
+    public ResponseEntity<String> login(@RequestBody ClienteDTO clienteDTO) {
+        boolean valid = clienteService.validarCredenciales(clienteDTO.nombre(), clienteDTO.clave());  
+        if (valid) {
+            return new ResponseEntity<>("Login exitoso", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Usuario o contraseña incorrectos", HttpStatus.UNAUTHORIZED);
+        }
+    }
+}
