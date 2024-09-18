@@ -30,7 +30,7 @@ public class ClienteController {
     public ClienteORM mostrarCliente(@RequestParam Long cedula) {
         return clienteService.consultarCliente(cedula);
     }
-    @GetMapping(path = "/cliente")
+    @GetMapping(path = "/client")
 @CrossOrigin
 public ResponseEntity<ClienteORM> obtenerClientePorCedula(@RequestParam Long cedula) {
     ClienteORM cliente = clienteService.consultarCliente(cedula);
