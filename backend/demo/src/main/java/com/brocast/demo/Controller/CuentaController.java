@@ -7,17 +7,20 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RestController;
 
 
 
 @RestController
 @AllArgsConstructor
+@CrossOrigin(origins = "http://212.90.120.186")
 public class CuentaController {
 
     public CuentaService cuentaService;
 
-    @PostMapping(path = "/cuenta")
     @CrossOrigin
+    @PostMapping(path = "/cuenta")
     public ResponseEntity<String> guardarCuenta(@RequestBody CuentaDTO cuentaDTO) {
         try {
             cuentaService.guardarCuenta(cuentaDTO.clienteCedula(), cuentaDTO.cuentaSaldo(), cuentaDTO.cuentaClave());

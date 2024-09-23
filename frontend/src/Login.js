@@ -16,7 +16,7 @@ function Login() {
     };
 
    
-    axios.post('http://localhost:8080/login', cliente)
+    axios.post('http://212.90.120.186:8080/login', cliente)
       .then(response => {
         if (response.status === 200) {
           navigate('/MainPage');
@@ -26,7 +26,8 @@ function Login() {
         if (error.response && error.response.status === 401) {
           alert('Usuario o contraseña incorrectos');
         } else {
-          alert('Hubo un error en el servidor');
+            console.log(error.response.data)
+          alert('Hubo un error en el servidor22 '+error);
         }
       });
   };
