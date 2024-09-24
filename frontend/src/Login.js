@@ -1,7 +1,8 @@
 import './login.css';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios'; 
+import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 function Login() {
   const [username, setUsername] = useState('');
@@ -69,7 +70,7 @@ function Login() {
          </div>
         <button type="submit" className="login-button">Continuar</button>
       </form>
-      <p>No tienes cuenta aún?  <a href="/register">Registrarme</a></p>
+      <p>No tienes cuenta aún?  <Link to={'/register'}>Registrarme</Link></p>
     </div>
     </div>
     </div>
