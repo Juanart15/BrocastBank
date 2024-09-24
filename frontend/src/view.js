@@ -14,7 +14,7 @@ function ViewAccounts() {
 
   const handleViewAccounts = () => {
     setLoading(true);
-    axios.get(`http://localhost:8080/cuentas?clienteCedula=${cedula}`)
+    axios.get(`http://212.90.120.186:8080/cuentas?clienteCedula=${cedula}`)
       .then((response) => {
         setAccounts(response.data);
         setLoading(false);

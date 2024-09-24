@@ -17,7 +17,7 @@ function CreateAccount() {
     setClientCedula(cedula);
 
     if (cedula.length === 10) { // Asegúrate de que la cédula tenga 10 dígitos
-      axios.get(`http://localhost:8080/client?cedula=${cedula}`)
+      axios.get(`http://212.90.120.186:8080/client?cedula=${cedula}`)
         .then(response => {
           const cliente = response.data;
           setClientName(cliente.nombre); // Auto-completa el nombre

@@ -21,7 +21,7 @@ function Transaction() {
       claveCuentaDeposito: clave,
     };
 
-    axios.post('http://localhost:8080/deposito', nuevoCliente)
+    axios.post('http://212.90.120.186:8080/deposito', nuevoCliente)
       .then(response => {
         console.log('Deposito exitoso', response.data);
         alert(`Deposito de $${amount} realizado exitosamente a la cuenta ${accountNumber}`);

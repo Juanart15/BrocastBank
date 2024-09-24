@@ -19,7 +19,7 @@ function Register() {
       telefono: celular,
       clave: password,
     };
-    axios.post('http://localhost:8080/cliente', nuevoCliente)
+    axios.post('http://212.90.120.186:8080/cliente', nuevoCliente)
       .then(response => {
         console.log('Cliente guardado:', response.data);
         alert('Te registraste exitosamente!');

@@ -17,7 +17,7 @@ function ViewAccount() {
     setError('');
     setAccount(null);
 
-    axios.get(`http://localhost:8080/cuent?clienteCedula=${cedula}&cuentaClave=${clave}`)
+    axios.get(`http://212.90.120.186:8080/cuent?clienteCedula=${cedula}&cuentaClave=${clave}`)
       .then((response) => {
         setAccount(response.data);
         setLoading(false);
