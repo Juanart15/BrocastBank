@@ -38,6 +38,12 @@ public class CuentaORM {
 
     @Column
     private String cuentaClave;
+
+    public CuentaORM(Object object, long Long, double v, String clave123) {
+    }
+
+    public CuentaORM(long l, double v, String clave123) {
+    }
 }
 
 
