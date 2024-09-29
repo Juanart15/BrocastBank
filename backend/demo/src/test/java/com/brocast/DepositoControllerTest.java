@@ -1,5 +1,6 @@
-package com.brocast.demo.Controller;
+package com.brocast;
 
+import com.brocast.demo.Controller.DepositoController;
 import com.brocast.demo.DTO.DepositoDTO;
 import com.brocast.demo.Services.DepositoService;
 import org.junit.jupiter.api.BeforeEach;
@@ -28,25 +29,25 @@ public class DepositoControllerTest {
 
 	@Test
 	public void testGuardarDeposito_Success() {
-		DepositoDTO depositoDTO = new DepositoDTO(1234567890, 500.0, "clave123");
+		DepositoDTO depositoDTO = new DepositoDTO(1234567890L, 500.0, "clave123");
 		doNothing().when(depositoService).guardarDepositos(anyLong(), anyDouble(), anyString());
 
 		ResponseEntity<String> response = depositoController.guardarDeposito(depositoDTO);
 
 		assertEquals(HttpStatus.CREATED, response.getStatusCode());
 		assertEquals("Deposito Registrado", response.getBody());
-		verify(depositoService, times(1)).guardarDepositos(1234567890, 500.0, "clave123");
+		verify(depositoService, times(1)).guardarDepositos(1234567890L, 500.0, "clave123");
 	}
 
 	@Test
 	public void testGuardarDeposito_Exception() {
-		DepositoDTO depositoDTO = new DepositoDTO(1234567890, 500.0, "clave123");
+		DepositoDTO depositoDTO = new DepositoDTO(1234567890L, 500.0, "clave123");
 		doThrow(new RuntimeException("Error al guardar")).when(depositoService).guardarDepositos(anyLong(), anyDouble(), anyString());
 
 		ResponseEntity<String> response = depositoController.guardarDeposito(depositoDTO);
 
 		assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
 		assertTrue(response.getBody().contains("Error al guardar el deposito"));
-		verify(depositoService, times(1)).guardarDepositos(1234567890, 500.0, "clave123");
+		verify(depositoService, times(1)).guardarDepositos(1234567890L, 500.0, "clave123");
 	}
 }

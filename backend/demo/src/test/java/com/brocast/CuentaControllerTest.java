@@ -1,5 +1,6 @@
-package com.brocast.demo.Controller;
+package com.brocast;
 
+import com.brocast.demo.Controller.CuentaController;
 import com.brocast.demo.DTO.CuentaDTO;
 import com.brocast.demo.ORM.CuentaORM;
 import com.brocast.demo.Services.CuentaService;

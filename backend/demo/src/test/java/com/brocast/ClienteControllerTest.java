@@ -1,5 +1,6 @@
-package com.brocast.demo.Controller;
+package com.brocast;
 
+import com.brocast.demo.Controller.ClienteController;
 import com.brocast.demo.DTO.ClienteDTO;
 import com.brocast.demo.ORM.ClienteORM;
 import com.brocast.demo.Services.ClienteService;
@@ -28,8 +29,8 @@ class ClienteControllerTest {
 
 	@Test
 	void testGuardarCliente() {
-		ClienteDTO clienteDTO = new ClienteDTO("juan", 123456789L, "5551234556", "password");
-		doNothing().when(clienteService).guardarCliente(anyString(), anyLong(), anyString(), anyString());
+		ClienteDTO clienteDTO = new ClienteDTO(14522222L, "Juan", 512223123L, 312223123L,"password");
+		doNothing().when(clienteService).guardarCliente(anyString(), anyLong(), Long.valueOf(anyString()), anyString());
 
 		ResponseEntity<String> response = clienteController.guardarCliente(clienteDTO);
 
@@ -39,8 +40,8 @@ class ClienteControllerTest {
 
 	@Test
 	void testGuardarClienteException() {
-		ClienteDTO clienteDTO = new ClienteDTO("juan", 123456789L, "5551234556", "password");
-		doThrow(new RuntimeException("Error")).when(clienteService).guardarCliente(anyString(), anyLong(), anyString(), anyString());
+		ClienteDTO clienteDTO = new ClienteDTO(14522222L, "Juan", 512223123L, 312223123L,"password");
+		doThrow(new RuntimeException("Error")).when(clienteService).guardarCliente(anyString(), anyLong(), Long.valueOf(anyString()), anyString());
 
 		ResponseEntity<String> response = clienteController.guardarCliente(clienteDTO);
 
@@ -50,7 +51,7 @@ class ClienteControllerTest {
 
 	@Test
 	void testMostrarCliente() {
-		ClienteORM clienteORM = new ClienteORM(123456789L, "juan Doe", "5551234556", "password");
+		ClienteORM clienteORM = new ClienteORM();
 		when(clienteService.consultarCliente(anyLong())).thenReturn(clienteORM);
 
 		ClienteORM response = clienteController.mostrarCliente(123456789L);
@@ -61,7 +62,7 @@ class ClienteControllerTest {
 
 	@Test
 	void testLoginExitoso() {
-		ClienteDTO clienteDTO = new ClienteDTO("juan Doe", 123456789L,"5551234556" , "password");
+		ClienteDTO clienteDTO = new ClienteDTO(14522222L, "Juan", 512223123L, 312223123L,"password");
 		when(clienteService.validarCredenciales(anyString(), anyString())).thenReturn(true);
 
 		ResponseEntity<String> response = clienteController.login(clienteDTO);
@@ -72,7 +73,7 @@ class ClienteControllerTest {
 
 	@Test
 	void testLoginFallido() {
-		ClienteDTO clienteDTO = new ClienteDTO("juan Doe", 123456789L, "5551234566", "password");
+		ClienteDTO clienteDTO = new ClienteDTO(14522222L, "Juan", 512223123L, 312223123L,"password");
 		when(clienteService.validarCredenciales(anyString(), anyString())).thenReturn(false);
 
 		ResponseEntity<String> response = clienteController.login(clienteDTO);
