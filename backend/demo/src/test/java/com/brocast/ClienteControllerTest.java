@@ -33,7 +33,6 @@ class ClienteControllerTest {
 		doNothing().when(clienteService).guardarCliente(anyString(), anyLong(), Long.valueOf(anyString()), anyString());
 
 		ResponseEntity<String> response = clienteController.guardarCliente(clienteDTO);
-
 		assertEquals(HttpStatus.CREATED, response.getStatusCode());
 		assertEquals("Cliente guardado", response.getBody());
 	}
