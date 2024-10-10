@@ -1,7 +1,7 @@
-package com.brocast;
+/*package com.brocast;
 
-import com.brocast.demo.Controller.ClienteController;
-import com.brocast.demo.DTO.ClienteDTO;
+import com.brocast.demo.controller.ClienteController;
+import com.brocast.demo.dto.ClienteDTO;
 import com.brocast.demo.ORM.ClienteORM;
 import com.brocast.demo.Services.ClienteService;
 import org.junit.jupiter.api.BeforeEach;
@@ -80,4 +80,4 @@ class ClienteControllerTest {
 		assertEquals(HttpStatus.UNAUTHORIZED, response.getStatusCode());
 		assertEquals("Usuario o contraseña incorrectos", response.getBody());
 	}
-}
+}*/

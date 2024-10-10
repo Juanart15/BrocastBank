@@ -447,7 +447,7 @@ var Dom = YAHOO.util.Dom,
         * @description This method is called from Menu's renderEvent to add a few more classes to the menu items
         * @param {String} ev The event that fired.
         * @param {Array} na Array of event information.
-        * @param {Object} o Button config object. 
+        * @param {Object} o Button config object.
         */
         _addMenuClasses: function(ev, na, o) {
             Dom.addClass(this.element, 'yui-toolbar-' + o.get('value') + '-menu');
@@ -1060,7 +1060,7 @@ var Dom = YAHOO.util.Dom,
         /**
         * @method addButtonGroup
         * @description Add a new button group to the toolbar. (uses addButton)
-        * @param {Object} oGroup Object literal reference to the Groups Config (contains an array of button configs as well as the group label)
+        * @param {Object} oGroup Object literal reference to the Groups config (contains an array of button configs as well as the group label)
         */
         addButtonGroup: function(oGroup) {
             if (!this.get('element')) {
@@ -1121,7 +1121,7 @@ var Dom = YAHOO.util.Dom,
         * @method addButtonToGroup
         * @description Add a new button to a toolbar group. Buttons supported:
         *   push, split, menu, select, color, spin
-        * @param {Object} oButton Object literal reference to the Button's Config
+        * @param {Object} oButton Object literal reference to the Button's config
         * @param {String} group The Group identifier passed into the initial config
         * @param {HTMLElement} after Optional HTML element to insert this button after in the DOM.
         */
@@ -1138,7 +1138,7 @@ var Dom = YAHOO.util.Dom,
         * @method addButton
         * @description Add a new button to the toolbar. Buttons supported:
         *   push, split, menu, select, color, spin
-        * @param {Object} oButton Object literal reference to the Button's Config
+        * @param {Object} oButton Object literal reference to the Button's config
         * @param {HTMLElement} after Optional HTML element to insert this button after in the DOM.
         */
         addButton: function(oButton, after) {
@@ -5171,7 +5171,7 @@ var Dom = YAHOO.util.Dom,
 
             /**
             * @attribute handleSubmit
-            * @description Config handles if the editor will attach itself to the textareas parent form's submit handler.
+            * @description config handles if the editor will attach itself to the textareas parent form's submit handler.
             If it is set to true, the editor will attempt to attach a submit listener to the textareas parent form.
             Then it will trigger the editors save handler and place the new content back into the text area before the form is submitted.
             * @default false

@@ -7,7 +7,7 @@ version: 2.9.0
 (function () {
 
     /**
-    * Config is a utility used within an Object to allow the implementer to
+    * config is a utility used within an Object to allow the implementer to
     * maintain a list of local configuration properties and listen for changes 
     * to those properties dynamically using CustomEvent. The initial values are 
     * also maintained so that the configuration can be reset at any given point 
@@ -15,7 +15,7 @@ version: 2.9.0
     * @namespace YAHOO.util
     * @class Config
     * @constructor
-    * @param {Object} owner The owner Object to which this Config Object belongs
+    * @param {Object} owner The owner Object to which this config Object belongs
     */
     YAHOO.util.Config = function (owner) {
 
@@ -23,7 +23,7 @@ version: 2.9.0
             this.init(owner);
         }
 
-        if (!owner) {  YAHOO.log("No owner specified for Config object", "error", "Config"); }
+        if (!owner) {  YAHOO.log("No owner specified for config object", "error", "Config"); }
 
     };
 
@@ -54,7 +54,7 @@ version: 2.9.0
     Config.prototype = {
      
         /**
-        * Object reference to the owner of this Config Object
+        * Object reference to the owner of this config Object
         * @property owner
         * @type Object
         */
@@ -96,7 +96,7 @@ version: 2.9.0
         eventQueue: null,
         
         /**
-        * Custom Event, notifying subscribers when Config properties are set 
+        * Custom Event, notifying subscribers when config properties are set
         * (setProperty is called without the silent flag
         * @event configChangedEvent
         */
@@ -105,7 +105,7 @@ version: 2.9.0
         /**
         * Initializes the configuration Object and all of its local members.
         * @method init
-        * @param {Object} owner The owner Object to which this Config 
+        * @param {Object} owner The owner Object to which this config
         * Object belongs
         */
         init: function (owner) {
@@ -151,7 +151,7 @@ version: 2.9.0
         * @param {value} Object The value of the correct type for the property
         */ 
         fireEvent: function ( key, value ) {
-            YAHOO.log("Firing Config event: " + key + "=" + value, "info", "Config");
+            YAHOO.log("Firing config event: " + key + "=" + value, "info", "Config");
             var property = this.config[key];
         
             if (property && property.event) {
@@ -160,7 +160,7 @@ version: 2.9.0
         },
         
         /**
-        * Adds a property to the Config Object's private config hash.
+        * Adds a property to the config Object's private config hash.
         * @method addProperty
         * @param {String} key The configuration property's name
         * @param {Object} propertyObject The Object containing all of this 
@@ -193,7 +193,7 @@ version: 2.9.0
         
         /**
         * Returns a key-value configuration map of the values currently set in  
-        * the Config Object.
+        * the config Object.
         * @method getConfig
         * @return {Object} The current config, represented in a key-value map
         */
@@ -404,7 +404,7 @@ version: 2.9.0
                     }
                 }
 
-                YAHOO.log("Config event queue: " + this.outputEventQueue(), "info", "Config");
+                YAHOO.log("config event queue: " + this.outputEventQueue(), "info", "Config");
 
                 return true;
             } else {
@@ -577,9 +577,9 @@ version: 2.9.0
         },
         
         /**
-        * Returns a string representation of the Config object
+        * Returns a string representation of the config object
         * @method toString
-        * @return {String} The Config object in string format.
+        * @return {String} The config object in string format.
         */
         toString: function () {
             var output = "Config";
@@ -590,7 +590,7 @@ version: 2.9.0
         },
         
         /**
-        * Returns a string representation of the Config object's current 
+        * Returns a string representation of the config object's current
         * CustomEvent queue
         * @method outputEventQueue
         * @return {String} The string list of CustomEvents currently queued 
@@ -1265,7 +1265,7 @@ version: 2.9.0
             this.beforeInitEvent.fire(Module);
 
             /**
-            * The Module's Config object used for monitoring 
+            * The Module's config object used for monitoring
             * configuration properties.
             * @property cfg
             * @type YAHOO.util.Config
@@ -1318,7 +1318,7 @@ version: 2.9.0
             }
 
             /*
-                Subscribe to the fireQueue() method of Config so that any 
+                Subscribe to the fireQueue() method of config so that any
                 queued configuration changes are excecuted upon render of 
                 the Module
             */ 
@@ -2469,7 +2469,7 @@ version: 2.9.0
         
         /**
         * Initializes the class's configurable properties which can be changed 
-        * using the Overlay's Config object (cfg).
+        * using the Overlay's config object (cfg).
         * @method initDefaultConfig
         */
         initDefaultConfig: function () {
@@ -4268,7 +4268,7 @@ version: 2.9.0
         init: function (userConfig) {
 
             /**
-            * The OverlayManager's Config object used for monitoring 
+            * The OverlayManager's config object used for monitoring
             * configuration properties.
             * @property cfg
             * @type Config

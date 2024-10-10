@@ -2209,7 +2209,7 @@ YAHOO.util.DragDrop.prototype = {
     /**
      * Applies the configuration parameters that were passed into the constructor.
      * This is supposed to happen at each level through the inheritance chain.  So
-     * a DDProxy implentation will execute apply config on DDProxy, DD, and 
+     * a DDProxy implentation will execute apply config on DDProxy, DD, and
      * DragDrop in order to get all of the parameters that are available in
      * each object.
      * @method applyConfig

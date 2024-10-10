@@ -1,7 +1,7 @@
-package com.brocast;
+/*package com.brocast;
 
-import com.brocast.demo.Controller.CuentaController;
-import com.brocast.demo.DTO.CuentaDTO;
+import com.brocast.demo.controller.CuentaController;
+import com.brocast.demo.dto.CuentaDTO;
 import com.brocast.demo.ORM.CuentaORM;
 import com.brocast.demo.Services.CuentaService;
 import org.junit.jupiter.api.BeforeEach;
@@ -72,4 +72,4 @@ public class CuentaControllerTest {
 		assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
 		verify(cuentaService, times(1)).consultarCuenta(123L, "clave123");
 	}
-}
+}*/

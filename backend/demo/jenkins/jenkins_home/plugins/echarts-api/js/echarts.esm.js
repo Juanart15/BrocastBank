@@ -62359,7 +62359,7 @@ var LinesView = /** @class */function (_super) {
     if (!isSvg) {
       zr.painter.getLayer(zlevel).clear(true);
     }
-    // Config layer with motion blur
+    // config layer with motion blur
     if (this._lastZlevel != null && !isSvg) {
       zr.configLayer(this._lastZlevel, {
         motionBlur: false

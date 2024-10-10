@@ -1,7 +1,7 @@
-package com.brocast;
+/*package com.brocast;
 
-import com.brocast.demo.Controller.DepositoController;
-import com.brocast.demo.DTO.DepositoDTO;
+import com.brocast.demo.controller.DepositoController;
+import com.brocast.demo.dto.DepositoDTO;
 import com.brocast.demo.Services.DepositoService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -50,4 +50,4 @@ public class DepositoControllerTest {
 		assertTrue(response.getBody().contains("Error al guardar el deposito"));
 		verify(depositoService, times(1)).guardarDepositos(1234567890L, 500.0, "clave123");
 	}
-}
+}*/

@@ -19,7 +19,6 @@ public class ClienteService {
         return clienteJPA.findByCedula(cedula);
     }
 
-    // Validar credenciales
     public boolean validarCredenciales(String nombre, String clave) {
         ClienteORM cliente = clienteJPA.findByNombre(nombre);
         return cliente != null && cliente.getClave().equals(clave);

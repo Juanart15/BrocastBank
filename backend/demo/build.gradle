@@ -11,18 +11,18 @@ version = '0.0.1-SNAPSHOT'
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(17) // Configuración explícita de Java 17
-    }
-}
-sonarqube {
-    properties {
-        property "sonar.projectKey", "brocastbank" // Cambia esto al proyecto clave que estés utilizando
-        property "sonar.host.url", "http://localhost:9000" // URL del servidor SonarQube
-        property "sonar.login", "278a7a5165accbe5de289472595c8e5cadd3ffba" // Tu token de autenticación
-        property "sonar.sourceEncoding", "UTF-8"
+        languageVersion = JavaLanguageVersion.of(17)
     }
 }
 
+sonarqube {
+    properties {
+        property "sonar.projectKey", "brocastbank"
+        property "sonar.host.url", "http://localhost:9000"
+        property "sonar.login", "278a7a5165accbe5de289472595c8e5cadd3ffba"
+        property "sonar.sourceEncoding", "UTF-8"
+    }
+}
 
 configurations {
     compileOnly {
@@ -53,12 +53,15 @@ dependencies {
 tasks.named('test') {
     useJUnitPlatform()
 }
+
 test {
-    finalizedBy jacocoTestReport // report is always generated after tests run
+    finalizedBy jacocoTestReport
 }
+
 bootJar {
     exclude 'org/projectlombok/**'
 }
+
 sonarqube {
     properties {
         property("sonar.projectName", "clase20242")

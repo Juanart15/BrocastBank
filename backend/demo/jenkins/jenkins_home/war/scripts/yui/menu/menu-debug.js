@@ -1560,7 +1560,7 @@ init: function (p_oElement, p_oConfig) {
 
 
                 /* 
-                    Note: we don't pass the user config in here yet 
+                    Note: we don't pass the user config in here yet
                     because we only want it executed once, at the lowest 
                     subclass level.
                 */ 
@@ -1582,7 +1582,7 @@ init: function (p_oElement, p_oConfig) {
                     The source element is not something that we can use 
                     outright, so we need to create a new Overlay
 
-                    Note: we don't pass the user config in here yet 
+                    Note: we don't pass the user config in here yet
                     because we only want it executed once, at the lowest 
                     subclass level.
                 */ 
@@ -1601,7 +1601,7 @@ init: function (p_oElement, p_oConfig) {
     else {
 
         /* 
-            Note: we don't pass the user config in here yet 
+            Note: we don't pass the user config in here yet
             because we only want it executed once, at the lowest 
             subclass level.
         */ 
@@ -6019,7 +6019,7 @@ unsubscribe: function () {
 
 /**
 * @description Initializes the class's configurable properties which can be
-* changed using the menu's Config object ("cfg").
+* changed using the menu's config object ("cfg").
 * @method initDefaultConfig
 */
 initDefaultConfig: function () {
@@ -8970,7 +8970,7 @@ toString: function() {
 /**
 * @method initDefaultConfig
 * @description Initializes the class's configurable properties which can be 
-* changed using the context menu's Config object ("cfg").
+* changed using the context menu's config object ("cfg").
 */
 initDefaultConfig: function() {
 
@@ -9569,7 +9569,7 @@ toString: function() {
 
 /**
 * @description Initializes the class's configurable properties which can be
-* changed using the menu bar's Config object ("cfg").
+* changed using the menu bar's config object ("cfg").
 * @method initDefaultConfig
 */
 initDefaultConfig: function() {
@@ -9741,7 +9741,7 @@ init: function(p_oObject, p_oConfig) {
 
     /* 
         Call the init of the superclass (YAHOO.widget.MenuItem)
-        Note: We don't pass the user config in here yet 
+        Note: We don't pass the user config in here yet
         because we only want it executed once, at the lowest 
         subclass level.
     */ 
