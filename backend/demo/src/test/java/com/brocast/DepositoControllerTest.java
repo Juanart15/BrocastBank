@@ -1,7 +1,7 @@
 /*package com.brocast;
 
-import com.brocast.demo.controller.DepositoController;
-import com.brocast.demo.dto.DepositoDTO;
+import com.brocast.demo.Controller.DepositoController;
+import com.brocast.demo.DTO.DepositoDTO;
 import com.brocast.demo.Services.DepositoService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

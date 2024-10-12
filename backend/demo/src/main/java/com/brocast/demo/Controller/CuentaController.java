@@ -1,6 +1,6 @@
-package com.brocast.demo.controller;
+package com.brocast.demo.Controller;
 
-import com.brocast.demo.dto.CuentaDTO;
+import com.brocast.demo.DTO.CuentaDTO;
 import com.brocast.demo.ORM.CuentaORM;
 import com.brocast.demo.Services.CuentaService;
 import lombok.AllArgsConstructor;

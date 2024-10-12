@@ -1,7 +1,7 @@
 /*package com.brocast;
 
-import com.brocast.demo.controller.ClienteController;
-import com.brocast.demo.dto.ClienteDTO;
+import com.brocast.demo.Controller.ClienteController;
+import com.brocast.demo.DTO.ClienteDTO;
 import com.brocast.demo.ORM.ClienteORM;
 import com.brocast.demo.Services.ClienteService;
 import org.junit.jupiter.api.BeforeEach;
@@ -31,7 +31,6 @@ class ClienteControllerTest {
 	void testGuardarCliente() {
 		ClienteDTO clienteDTO = new ClienteDTO(14522222L, "Juan", 512223123L, 312223123L,"password");
 		doNothing().when(clienteService).guardarCliente(anyString(), anyLong(), Long.valueOf(anyString()), anyString());
-
 		ResponseEntity<String> response = clienteController.guardarCliente(clienteDTO);
 		assertEquals(HttpStatus.CREATED, response.getStatusCode());
 		assertEquals("Cliente guardado", response.getBody());

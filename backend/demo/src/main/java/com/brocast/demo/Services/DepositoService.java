@@ -26,7 +26,6 @@ public class DepositoService {
             throw new RuntimeException("Clave incorrecta para la cuenta");
         }
 
-        // Crear un nuevo registro de depósito
         DepositoORM depositoORM = new DepositoORM();
         depositoORM.setNumeroCuentaDeposito(cuentaORM.getCuentaNumero());
         depositoORM.setSaldoDeposito(saldoDeposito);
@@ -34,7 +33,6 @@ public class DepositoService {
 
         depositoJPA.save(depositoORM);  
 
-        // Actualizar el saldo de la cuenta
         cuentaORM.setCuentaSaldo(cuentaORM.getCuentaSaldo() + saldoDeposito);
         cuentaJPA.save(cuentaORM); 
 

@@ -1,6 +1,6 @@
-/*package com.brocast.demo.controller;
+/*package com.brocast.demo.Controller;
 
-import com.brocast.demo.dto.ClienteDTO;
+import com.brocast.demo.DTO.ClienteDTO;
 import com.brocast.demo.ORM.ClienteORM;
 import com.brocast.demo.Services.ClienteService;
 import org.junit.jupiter.api.BeforeEach;

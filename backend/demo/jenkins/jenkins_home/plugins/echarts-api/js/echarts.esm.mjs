@@ -52101,7 +52101,7 @@ var TreemapView = /** @class */function (_super) {
       };
       controllerHost = this._controllerHost;
     }
-    // Init controller.
+    // Init Controller.
     if (!controller) {
       controller = this._controller = new RoamController(api.getZr());
       controller.enable(this.seriesModel.get('roam'));
@@ -75722,7 +75722,7 @@ var BrushView = /** @class */function (_super) {
     this._updateController(brushModel, ecModel, api, payload);
   };
   BrushView.prototype._updateController = function (brushModel, ecModel, api, payload) {
-    // Do not update controller when drawing.
+    // Do not update Controller when drawing.
     (!payload || payload.$from !== brushModel.id) && this._brushController.setPanels(brushModel.brushTargetManager.makePanelOpts(api)).enableBrush(brushModel.brushOption).updateCovers(brushModel.areas.slice());
   };
   // updateLayout: updateController,
@@ -79426,7 +79426,7 @@ var ScrollableLegendView = /** @class */function (_super) {
     // Place items in contentGroup.
     box(legendModel.get('orient'), contentGroup, legendModel.get('itemGap'), !orientIdx ? null : maxSize.width, orientIdx ? null : maxSize.height);
     box(
-    // Buttons in controller are layout always horizontally.
+    // Buttons in Controller are layout always horizontally.
     'horizontal', controllerGroup, legendModel.get('pageButtonItemGap', true));
     var contentRect = contentGroup.getBoundingRect();
     var controllerRect = controllerGroup.getBoundingRect();
@@ -79446,16 +79446,16 @@ var ScrollableLegendView = /** @class */function (_super) {
     // Place containerGroup and controllerGroup and contentGroup.
     if (showController) {
       var pageButtonPosition = legendModel.get('pageButtonPosition', true);
-      // controller is on the right / bottom.
+      // Controller is on the right / bottom.
       if (pageButtonPosition === 'end') {
         controllerPos[orientIdx] += maxSize[wh] - controllerRect[wh];
       }
-      // controller is on the left / top.
+      // Controller is on the left / top.
       else {
         containerPos[orientIdx] += controllerRect[wh] + pageButtonGap;
       }
     }
-    // Always align controller to content as 'middle'.
+    // Always align Controller to content as 'middle'.
     controllerPos[1 - orientIdx] += contentRect[hw] / 2 - controllerRect[hw] / 2;
     contentGroup.setPosition(contentPos);
     containerGroup.setPosition(containerPos);
@@ -79487,7 +79487,7 @@ var ScrollableLegendView = /** @class */function (_super) {
       // can not be obtained from `containerGroup.getBoundingRect()`.
       containerGroup.__rectSize = clipShape[wh];
     } else {
-      // Do not remove or ignore controller. Keep them set as placeholders.
+      // Do not remove or ignore Controller. Keep them set as placeholders.
       controllerGroup.eachChild(function (child) {
         child.attr({
           invisible: true,
@@ -79501,7 +79501,7 @@ var ScrollableLegendView = /** @class */function (_super) {
       x: pageInfo.contentPosition[0],
       y: pageInfo.contentPosition[1]
     },
-    // When switch from "show controller" to "not show controller", view should be
+    // When switch from "show Controller" to "not show Controller", view should be
     // updated immediately without animation, otherwise causes weird effect.
     showController ? legendModel : null);
     this._updatePageInfoView(legendModel, pageInfo);
@@ -79884,7 +79884,7 @@ function installDataZoomRoamProcessor(registers) {
     var apiInner = inner$k(api);
     var coordSysRecordMap = apiInner.coordSysRecordMap || (apiInner.coordSysRecordMap = createHashMap());
     coordSysRecordMap.each(function (coordSysRecord) {
-      // `coordSysRecordMap` always exists (because it holds the `roam controller`, which should
+      // `coordSysRecordMap` always exists (because it holds the `roam Controller`, which should
       // better not re-create each time), but clear `dataZoomInfoMap` each round of the workflow.
       coordSysRecord.dataZoomInfoMap = null;
     });
@@ -79905,7 +79905,7 @@ function installDataZoomRoamProcessor(registers) {
         });
       });
     });
-    // (1) Merge dataZoom settings for each coord sys and set to the roam controller.
+    // (1) Merge dataZoom settings for each coord sys and set to the roam Controller.
     // (2) Clear coord sys if not refered by any dataZoom.
     coordSysRecordMap.each(function (coordSysRecord) {
       var controller = coordSysRecord.controller;
@@ -81239,7 +81239,7 @@ var VisualMapModel = /** @class */function (_super) {
       each$d(this.stateList, function (state) {
         var itemSize = this.itemSize;
         var visuals = controller[state];
-        // Set inactive color for controller if no other color
+        // Set inactive color for Controller if no other color
         // attr (like colorAlpha) specified.
         if (!visuals) {
           visuals = controller[state] = {
@@ -81611,7 +81611,7 @@ var VisualMapView = /** @class */function (_super) {
    * @param visualCluster Only can be 'color' 'opacity' 'symbol' 'symbolSize'
    * @param opts
    * @param opts.forceState Specify state, instead of using getValueState method.
-   * @param opts.convertOpacityToAlpha For color gradient in controller widget.
+   * @param opts.convertOpacityToAlpha For color gradient in Controller widget.
    * @return {*} Visual value.
    */
   VisualMapView.prototype.getControllerVisual = function (targetValue, visualCluster, opts) {

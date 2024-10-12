@@ -5,6 +5,8 @@ import com.brocast.demo.JPA.ClienteJPA;
 import com.brocast.demo.JPA.CuentaJPA;
 import com.brocast.demo.ORM.ClienteORM;
 import com.brocast.demo.ORM.CuentaORM;
+import com.brocast.demo.Services.exepciones.ClienteNotFoundException;
+import com.brocast.demo.Services.exepciones.CuentaIncorrectaException;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -53,20 +55,6 @@ public class CuentaService {
             throw new CuentaIncorrectaException("Cédula o clave incorrecta.");
         }
         return cuenta;
-    }
-}
-
-// Excepción personalizada para cliente no encontrado
-class ClienteNotFoundException extends RuntimeException {
-    public ClienteNotFoundException(String message) {
-        super(message);
-    }
-}
-
-// Excepción personalizada para cuenta incorrecta
-class CuentaIncorrectaException extends RuntimeException {
-    public CuentaIncorrectaException(String message) {
-        super(message);
     }
 }
 

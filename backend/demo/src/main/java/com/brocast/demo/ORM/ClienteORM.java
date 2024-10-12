@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Table(name = "clientes")
+@Table(name = "cliente")
 @Entity
 @Data
 @AllArgsConstructor
@@ -28,6 +28,4 @@ public class ClienteORM {
 
     @Column
     private String clave;
-
-
 }
