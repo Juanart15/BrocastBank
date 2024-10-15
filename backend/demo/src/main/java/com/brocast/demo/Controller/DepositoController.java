@@ -26,4 +26,5 @@ public class DepositoController {
             e.printStackTrace();
             return new ResponseEntity<>("Error al guardar el deposito: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
-    }}
+    }
+}

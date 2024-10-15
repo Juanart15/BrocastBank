@@ -65,5 +65,6 @@ bootJar {
 sonarqube {
     properties {
         property("sonar.projectName", "clase20242")
+        sonar.gradle.skipCompile=true
     }
 }

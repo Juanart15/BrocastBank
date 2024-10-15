@@ -1,4 +1,4 @@
-package com.brocast.unitarias;
+package com.brocast.demo.unitarias;
 
 
 import com.brocast.demo.JPA.ClienteJPA;
