@@ -1,8 +1,8 @@
 package com.brocast.demo.integracion;
 
-import com.brocast.demo.Controller.DepositoController;
-import com.brocast.demo.DTO.DepositoDTO;
-import com.brocast.demo.Services.DepositoService;
+import com.brocast.demo.controller.DepositoController;
+import com.brocast.demo.dto.DepositoDTO;
+import com.brocast.demo.services.DepositoService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

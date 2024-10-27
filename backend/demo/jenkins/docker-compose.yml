@@ -4,8 +4,9 @@ services:
   jenkins:
     container_name: jenkins
     image: jenkins/jenkins:lts
+    user: root
     volumes:
-      - .\jenkins_home:/var/jenkins_home
+      - ./jenkins_home:/var/jenkins_home
     ports:
       - "9080:8080"
     networks:

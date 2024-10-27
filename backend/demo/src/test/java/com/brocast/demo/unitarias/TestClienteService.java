@@ -1,9 +1,9 @@
 package com.brocast.demo.unitarias;
 
 
-import com.brocast.demo.JPA.ClienteJPA;
-import com.brocast.demo.ORM.ClienteORM;
-import com.brocast.demo.Services.ClienteService;
+import com.brocast.demo.jpa.ClienteJPA;
+import com.brocast.demo.orm.ClienteORM;
+import com.brocast.demo.services.ClienteService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

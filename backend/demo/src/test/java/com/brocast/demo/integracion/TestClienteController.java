@@ -1,9 +1,9 @@
 package com.brocast.demo.integracion;
 
-import com.brocast.demo.Controller.ClienteController;
-import com.brocast.demo.DTO.ClienteDTO;
-import com.brocast.demo.ORM.ClienteORM;
-import com.brocast.demo.Services.ClienteService;
+import com.brocast.demo.controller.ClienteController;
+import com.brocast.demo.dto.ClienteDTO;
+import com.brocast.demo.orm.ClienteORM;
+import com.brocast.demo.services.ClienteService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

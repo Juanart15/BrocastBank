@@ -1,12 +1,12 @@
 package com.brocast.demo.unitarias;
 
-import com.brocast.demo.JPA.ClienteJPA;
-import com.brocast.demo.JPA.CuentaJPA;
-import com.brocast.demo.ORM.ClienteORM;
-import com.brocast.demo.ORM.CuentaORM;
-import com.brocast.demo.Services.exepciones.ClienteNotFoundException;
-import com.brocast.demo.Services.CuentaService;
-import com.brocast.demo.Services.exepciones.CuentaIncorrectaException;
+import com.brocast.demo.jpa.ClienteJPA;
+import com.brocast.demo.jpa.CuentaJPA;
+import com.brocast.demo.orm.ClienteORM;
+import com.brocast.demo.orm.CuentaORM;
+import com.brocast.demo.services.exepciones.ClienteNotFoundException;
+import com.brocast.demo.services.CuentaService;
+import com.brocast.demo.services.exepciones.CuentaIncorrectaException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;

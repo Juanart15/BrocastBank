@@ -52101,7 +52101,7 @@ var TreemapView = /** @class */function (_super) {
       };
       controllerHost = this._controllerHost;
     }
-    // Init Controller.
+    // Init controller.
     if (!controller) {
       controller = this._controller = new RoamController(api.getZr());
       controller.enable(this.seriesModel.get('roam'));
@@ -75722,7 +75722,7 @@ var BrushView = /** @class */function (_super) {
     this._updateController(brushModel, ecModel, api, payload);
   };
   BrushView.prototype._updateController = function (brushModel, ecModel, api, payload) {
-    // Do not update Controller when drawing.
+    // Do not update controller when drawing.
     (!payload || payload.$from !== brushModel.id) && this._brushController.setPanels(brushModel.brushTargetManager.makePanelOpts(api)).enableBrush(brushModel.brushOption).updateCovers(brushModel.areas.slice());
   };
   // updateLayout: updateController,
@@ -79426,7 +79426,7 @@ var ScrollableLegendView = /** @class */function (_super) {
     // Place items in contentGroup.
     box(legendModel.get('orient'), contentGroup, legendModel.get('itemGap'), !orientIdx ? null : maxSize.width, orientIdx ? null : maxSize.height);
     box(
-    // Buttons in Controller are layout always horizontally.
+    // Buttons in controller are layout always horizontally.
     'horizontal', controllerGroup, legendModel.get('pageButtonItemGap', true));
     var contentRect = contentGroup.getBoundingRect();
     var controllerRect = controllerGroup.getBoundingRect();

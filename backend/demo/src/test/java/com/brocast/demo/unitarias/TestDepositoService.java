@@ -1,10 +1,10 @@
 package com.brocast.demo.unitarias;
 
-import com.brocast.demo.JPA.CuentaJPA;
-import com.brocast.demo.JPA.DepositoJPA;
-import com.brocast.demo.ORM.CuentaORM;
-import com.brocast.demo.ORM.DepositoORM;
-import com.brocast.demo.Services.DepositoService;
+import com.brocast.demo.jpa.CuentaJPA;
+import com.brocast.demo.jpa.DepositoJPA;
+import com.brocast.demo.orm.CuentaORM;
+import com.brocast.demo.orm.DepositoORM;
+import com.brocast.demo.services.DepositoService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;

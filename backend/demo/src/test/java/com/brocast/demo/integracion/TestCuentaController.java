@@ -1,9 +1,9 @@
 package com.brocast.demo.integracion;
 
-import com.brocast.demo.DTO.CuentaDTO;
-import com.brocast.demo.ORM.CuentaORM;
-import com.brocast.demo.Controller.CuentaController;
-import com.brocast.demo.Services.CuentaService;
+import com.brocast.demo.dto.CuentaDTO;
+import com.brocast.demo.orm.CuentaORM;
+import com.brocast.demo.controller.CuentaController;
+import com.brocast.demo.services.CuentaService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
