@@ -18,27 +18,26 @@ public class CuentaORM {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long cuentaId;
 
-    @Column(unique = true, nullable = false)
+    @Column(name = "cuenta_numero", unique = true, nullable = false)
     private Long cuentaNumero;
 
-    @Column
+    @Column(name = "cliente_cedula")
     private Long clienteCedula;
 
-    @Column
+    @Column(name = "cliente_nombre")
     private String clienteNombre;
 
-    @Column
+    @Column(name = "cliente_telefono")
     private Long clienteTelefono;
 
-    @Column(nullable = true)
+    @Column(name = "cuenta_saldo", nullable = true)
     private Double cuentaSaldo;
 
-    @Column
+    @Column(name = "cuenta_fecha_creacion")
     private LocalDate cuentaFechaCreacion;
 
-    @Column
+    @Column(name = "cuenta_clave")
     private String cuentaClave;
-
 }
 
 

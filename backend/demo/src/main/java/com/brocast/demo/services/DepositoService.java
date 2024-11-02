@@ -4,10 +4,9 @@ import com.brocast.demo.jpa.CuentaJPA;
 import com.brocast.demo.jpa.DepositoJPA;
 import com.brocast.demo.orm.CuentaORM;
 import com.brocast.demo.orm.DepositoORM;
-import com.brocast.demo.services.exepciones.ClaveIncorrectaException;
-import com.brocast.demo.services.exepciones.CuentaNoEncontradaException;
+import com.brocast.demo.services.excepciones.ClaveIncorrectaException;
+import com.brocast.demo.services.excepciones.CuentaNoEncontradaException;
 
-import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +16,7 @@ public class DepositoService {
     private final CuentaJPA cuentaJPA;
     private final DepositoJPA depositoJPA;
 
-    @Transactional
+
     public boolean guardarDepositos(Long numeroCuentaDeposito, Double saldoDeposito, String claveCuentaDeposito) {
         CuentaORM cuentaORM = cuentaJPA.findByCuentaNumero(numeroCuentaDeposito);
 

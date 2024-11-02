@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @AllArgsConstructor
-@CrossOrigin(origins = "http://212.90.120.186")
+@CrossOrigin(origins = "http://212.90.120.186:3000")
 public class CuentaController {
 
     private final CuentaService cuentaService;

@@ -33,6 +33,16 @@ class TestCuentaController {
         cuentaORM.setCuentaSaldo(1500.00);
         cuentaORM.setCuentaClave("clave123");
     }
+    @Test
+    void testGuardarCuentaException() throws Exception {
+        when(cuentaService.guardarCuenta(123456789L,1500.00,"clave123")).thenThrow(new RuntimeException("Error al guardar"));
+
+        mockMvc.perform(post("/cuenta")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"clienteCedula\": 123456789, \"cuentaSaldo\": 1500.00, \"cuentaClave\": \"clave123\"}"))
+                .andExpect(status().isInternalServerError())
+                .andExpect(content().string("Error al crear la cuenta: Error al guardar"));
+    }
 
     @Test
     void testGuardarCuenta() throws Exception {

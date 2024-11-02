@@ -5,19 +5,18 @@ import com.brocast.demo.jpa.ClienteJPA;
 import com.brocast.demo.jpa.CuentaJPA;
 import com.brocast.demo.orm.ClienteORM;
 import com.brocast.demo.orm.CuentaORM;
-import com.brocast.demo.services.exepciones.ClienteNotFoundException;
-import com.brocast.demo.services.exepciones.CuentaIncorrectaException;
+import com.brocast.demo.services.excepciones.ClienteNotFoundException;
+import com.brocast.demo.services.excepciones.CuentaIncorrectaException;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+
 
 import java.time.LocalDate;
 import java.util.Random;
 
 @Service
-@Transactional
 @AllArgsConstructor
 public class CuentaService {
     private static final Random RANDOM = new Random();

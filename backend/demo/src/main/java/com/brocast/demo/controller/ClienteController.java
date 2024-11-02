@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @AllArgsConstructor
-@CrossOrigin(origins = "http://212.90.120.186")
+@CrossOrigin(origins = "http://212.90.120.186:8080")
 public class ClienteController {
 
     private final ClienteService clienteService;
