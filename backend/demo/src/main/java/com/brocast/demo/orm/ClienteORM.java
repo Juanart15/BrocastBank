@@ -28,4 +28,5 @@ public class ClienteORM {
 
     @Column
     private String clave;
+
 }
