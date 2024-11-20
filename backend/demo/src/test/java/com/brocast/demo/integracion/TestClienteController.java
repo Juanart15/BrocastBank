@@ -55,6 +55,37 @@ class TestClienteController {
                 .andExpect(jsonPath("$.cedula").value(123456789L))
                 .andExpect(jsonPath("$.nombre").value("Juan Perez"));
     }
+    @Test
+    void testObtenerClientePorCedulaClienteEncontrado() throws Exception {
+        ClienteORM clienteORM = new ClienteORM(2L,"Juan Perez", 123456789L, 5555555L, "password123");
+        when(clienteService.consultarCliente(123456789L)).thenReturn(clienteORM);
+
+        mockMvc.perform(get("/client")
+                        .param("cedula", "123456789"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.cedula").value(123456789L))
+                .andExpect(jsonPath("$.nombre").value("Juan Perez"));
+    }
+
+    @Test
+    void testObtenerClientePorCedulaClienteNoEncontrado() throws Exception {
+        when(clienteService.consultarCliente(123456789L)).thenReturn(null);
+
+        mockMvc.perform(get("/client")
+                        .param("cedula", "123456789"))
+                .andExpect(status().isNotFound());
+    }
+
+    @Test
+    void testGuardarClienteConExcepcion() throws Exception {
+        doThrow(new RuntimeException("Error al guardar")).when(clienteService).guardarCliente(anyString(), anyLong(), anyLong(), anyString());
+
+        mockMvc.perform(post("/cliente")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"nombre\":\"Juan Perez\",\"cedula\":123456789,\"telefono\":5555555,\"clave\":\"password123\"}"))
+                .andExpect(status().isInternalServerError())
+                .andExpect(content().string("Error al guardar cliente: Error al guardar"));
+    }
 
     @Test
     void testLoginExitoso() throws Exception {

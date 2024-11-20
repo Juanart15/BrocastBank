@@ -25,13 +25,10 @@ class TestDepositoService {
 
     @Mock
     private CuentaJPA cuentaJPA;
-
     @Mock
     private DepositoJPA depositoJPA;
-
     @Mock
     private AuditoriaJPA auditoriaJPA;
-
     @Mock
     private AuditoriaPublisher auditoriaPublisher;
 
@@ -45,7 +42,7 @@ class TestDepositoService {
 
     @Test
     void testGuardarDepositoExitoso() {
-        // Arrange
+
         CuentaORM cuenta = new CuentaORM();
         cuenta.setCuentaNumero(12345678L);
         cuenta.setCuentaSaldo(500.0);
@@ -54,12 +51,13 @@ class TestDepositoService {
         cuenta.setClienteNombre("Test User");
 
         when(cuentaJPA.findByCuentaNumero(12345678L)).thenReturn(cuenta);
+
         doNothing().when(auditoriaPublisher).send(any(AuditoriaDTO.class));
 
-        // Act
+
         boolean resultado = depositoService.guardarDepositos(12345678L, 100.0, "clave123");
 
-        // Assert
+
         ArgumentCaptor<DepositoORM> depositoCaptor = ArgumentCaptor.forClass(DepositoORM.class);
         verify(depositoJPA).save(depositoCaptor.capture());
 
@@ -76,6 +74,7 @@ class TestDepositoService {
 
         assertTrue(resultado);
     }
+
 
     @Test
     void testGuardarDepositoCuentaNoEncontrada() {
@@ -97,5 +96,55 @@ class TestDepositoService {
         assertThrows(ClaveIncorrectaException.class, () -> {
             depositoService.guardarDepositos(12345678L, 100.0, "clave123");
         });
+    }
+
+    @Test
+    void testActualizacionDeSaldoDeCuenta() {
+
+        CuentaORM cuenta = new CuentaORM();
+        cuenta.setCuentaNumero(12345678L);
+        cuenta.setCuentaSaldo(500.0);
+        cuenta.setCuentaClave("clave123");
+        cuenta.setClienteCedula(Long.valueOf("1234567890"));
+        cuenta.setClienteNombre("Test User");
+
+        when(cuentaJPA.findByCuentaNumero(12345678L)).thenReturn(cuenta);
+        doNothing().when(auditoriaPublisher).send(any(AuditoriaDTO.class));
+
+        boolean resultado = depositoService.guardarDepositos(12345678L, 100.0, "clave123");
+
+
+        verify(cuentaJPA).save(cuenta);
+        assertEquals(600.0, cuenta.getCuentaSaldo());
+        assertTrue(resultado);
+    }
+
+
+    @Test
+    void testEnvioDeEventoDeAuditoria() {
+        // Arrange
+        CuentaORM cuenta = new CuentaORM();
+        cuenta.setCuentaNumero(12345678L);
+        cuenta.setCuentaSaldo(500.0);
+        cuenta.setCuentaClave("clave123");
+        cuenta.setClienteCedula(Long.valueOf("1234567890"));
+        cuenta.setClienteNombre("Test User");
+
+        when(cuentaJPA.findByCuentaNumero(12345678L)).thenReturn(cuenta);
+        doNothing().when(auditoriaPublisher).send(any(AuditoriaDTO.class));
+
+        boolean resultado = depositoService.guardarDepositos(12345678L, 100.0, "clave123");
+
+        ArgumentCaptor<AuditoriaDTO> auditoriaDTOCaptor = ArgumentCaptor.forClass(AuditoriaDTO.class);
+        verify(auditoriaPublisher).send(auditoriaDTOCaptor.capture());
+
+        AuditoriaDTO auditoriaDTOCapturada = auditoriaDTOCaptor.getValue();
+        assertEquals(12345678L, auditoriaDTOCapturada.cuentaNumero());
+        assertEquals(Long.valueOf("1234567890"), auditoriaDTOCapturada.clienteCedula());
+        assertEquals("Test User", auditoriaDTOCapturada.clienteNombre());
+        assertEquals(100.0, auditoriaDTOCapturada.montoDepositado());
+        assertEquals(600.0, auditoriaDTOCapturada.nuevoSaldo());
+        assertNotNull(auditoriaDTOCapturada.fechaHora());
+        assertTrue(resultado);
     }
 }
