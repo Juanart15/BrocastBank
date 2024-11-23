@@ -1,0 +1,76 @@
+pipeline {
+    agent any
+
+    tools {
+        nodejs 'NodeJS' // Asegúrate de configurar una instalación de Node.js en Jenkins
+    }
+
+    parameters {
+        string(name: 'BRANCH_NAME', defaultValue: 'develop', description: 'Nombre de la rama a construir')
+    }
+
+    triggers {
+        githubPush() // Detecta los push desde GitHub
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                script {
+                    echo "Clonando la rama ${params.BRANCH_NAME}"
+                }
+                // Clona el repositorio con la rama específica
+                checkout([$class: 'GitSCM',
+                          branches: [[name: "*/${params.BRANCH_NAME}"]],
+                          userRemoteConfigs: [[url: 'https://github.com/Juanart15/BrocastBank.git']]])
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                dir('backend') { // Cambia al directorio 'backend'
+                    sh 'npm install' // Instala las dependencias
+                }
+            }
+        }
+
+        stage('Build') {
+            steps {
+                dir('backend') {
+                    echo 'Construyendo el proyecto con npm...'
+                    sh 'npm run build' // Asegúrate de tener un script build en tu package.json
+                }
+            }
+        }
+
+        stage('Test') {
+            steps {
+                dir('backend') {
+                    echo 'Ejecutando pruebas...'
+                    sh 'npm test' // Asegúrate de tener un script test en tu package.json
+                }
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                echo 'Desplegando el backend...'
+                dir('backend') {
+                    sh 'npm run deploy' // Si tienes un script de despliegue
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            echo 'Pipeline completado.'
+        }
+        success {
+            echo 'Pipeline ejecutado exitosamente.'
+        }
+        failure {
+            echo 'El pipeline falló.'
+        }
+    }
+}
