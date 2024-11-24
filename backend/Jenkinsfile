@@ -1,0 +1,131 @@
+pipeline {
+    agent any
+
+    tools {
+        nodejs 'NodeJS' 
+        jdk 'JDK17'     
+        dockerTool 'docker' 
+    }
+
+    parameters {
+        string(name: 'BRANCH_NAME', defaultValue: 'develop', description: 'Nombre de la rama a construir')
+    }
+
+    triggers {
+        githubPush() // Dispara el pipeline en cada push al repositorio de GitHub
+    }
+
+    environment {
+        // Variables para GitHub y Docker Hub
+        GIT_REPO = 'https://github.com/Juanart15/BrocastBank.git' // Repositorio del proyecto
+        BACKEND_DIR = 'backend' // Directorio del backend
+        DOCKER_IMAGE = 'pipeloon424/brocastbank-backend' // Nombre de la imagen Docker
+        DOCKER_CREDENTIALS = 'dockerhub-credentials-id' // ID de las credenciales de Docker Hub en Jenkins
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                echo "Clonando la rama ${params.BRANCH_NAME} del repositorio ${GIT_REPO}..."
+                // Clona el repositorio con la rama específica
+                checkout([$class: 'GitSCM',
+                          branches: [[name: "*/${params.BRANCH_NAME}"]],
+                          userRemoteConfigs: [[url: "${GIT_REPO}"]]])
+            }
+        }
+
+        stage('Compilar Backend') {
+            steps {
+                dir("${BACKEND_DIR}") {
+                    echo 'Compilando el backend con Gradle...'
+                    sh './gradlew clean assemble --daemon' // Limpia y construye el backend
+                }
+            }
+        }
+
+        stage('Ejecutar Pruebas Backend') {
+            steps {
+                dir("${BACKEND_DIR}") {
+                    echo 'Ejecutando pruebas del backend...'
+                    sh './gradlew test --daemon' // Ejecuta las pruebas del backend
+                }
+            }
+        }
+
+        stage('Generar Reporte de Cobertura Backend') {
+            steps {
+                dir("${BACKEND_DIR}") {
+                    echo 'Generando reporte de cobertura del backend...'
+                    sh './gradlew jacocoTestReport --daemon' // Genera reportes con JaCoCo
+                }
+            }
+        }
+
+        stage('Construir Imagen Docker') {
+            steps {
+                script {
+                    echo 'Construyendo imagen Docker del backend...'
+                    dir("${BACKEND_DIR}") {
+                        // Construcción de la imagen Docker usando Dockerfile
+                        def image = docker.build("${DOCKER_IMAGE}:${params.BRANCH_NAME}-${env.BUILD_NUMBER}")
+                        env.IMAGE_NAME = image.id
+                    }
+                }
+            }
+        }
+
+        stage('Escanear Vulnerabilidades Docker') {
+            steps {
+                script {
+                    echo 'Escaneando vulnerabilidades de la imagen Docker con Trivy...'
+                    sh """
+                    docker run --rm \
+                      -v /var/run/docker.sock:/var/run/docker.sock \
+                      -v $HOME/Library/Caches:/root/.cache/ \
+                      aquasec/trivy image --severity HIGH,CRITICAL ${DOCKER_IMAGE}:${params.BRANCH_NAME}-${env.BUILD_NUMBER}
+                    """
+                }
+            }
+        }
+
+        stage('Subir Imagen a Docker Hub') {
+            steps {
+                script {
+                    echo 'Subiendo imagen Docker a Docker Hub...'
+                    docker.withRegistry('https://index.docker.io/v1/', "${DOCKER_CREDENTIALS}") {
+                        def image = docker.image("${DOCKER_IMAGE}:${params.BRANCH_NAME}-${env.BUILD_NUMBER}")
+                        image.push() // Sube la imagen etiquetada
+                        image.push("latest") // Etiqueta adicional "latest"
+                    }
+                }
+            }
+        }
+
+        stage('Desplegar Backend (Docker Run)') {
+            steps {
+                script {
+                    echo 'Desplegando el backend en un contenedor Docker...'
+                    sh """
+                    docker run -d --name brocastbank-backend \
+                      -p 8080:8080 \
+                      ${DOCKER_IMAGE}:${params.BRANCH_NAME}-${env.BUILD_NUMBER}
+                    """
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            echo 'Pipeline finalizado. Limpiando recursos...'
+            sh "docker rmi ${DOCKER_IMAGE}:${params.BRANCH_NAME}-${env.BUILD_NUMBER} || true" // Elimina imágenes locales
+            cleanWs() // Limpia el workspace
+        }
+        success {
+            echo 'Pipeline ejecutado exitosamente.'
+        }
+        failure {
+            echo 'El pipeline falló.'
+        }
+    }
+}
